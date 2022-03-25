@@ -6,9 +6,17 @@ const postSchema = new Schema ({
   author: {type: Schema.Types.ObjectId, ref: "Profile"},
   avatar: {type: Schema.Types.ObjectId, ref: "Profile"},
   content: {type: String, required: true},
-  comments: [{type: Schema.Types.ObjectId, ref: "Comment"}]
+  comments: [commentSchema]
 }, {
   timestamps: true,
+})
+
+const commentSchema = new Schema({
+  author: {type: Schema.Types.ObjectId, ref: "Profile"},
+  avatar: {type: Schema.Types.ObjectId, ref: "Profile"},
+  content: {type: String, required: true}
+}, {
+  timestamps: true
 })
 
 const Post = mongoose.model("Post", postSchema)
