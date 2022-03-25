@@ -7,6 +7,8 @@ const router = Router()
 router.get('/', postsCtrl.index)
 //localhost:3000/socialFeed
 router.post('/', postsCtrl.create)
+//localhost:3000/socialFeed/:id
+router.get('/:id', postsCtrl.show)
 
 
 export {

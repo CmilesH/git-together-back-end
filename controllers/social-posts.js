@@ -20,7 +20,17 @@ function create(req, res) {
   })
 }
 
+function show(req, res) {
+  Post.findById(req.params.id)
+  .then(post => res.json(post))
+  .catch(err => {
+    console.log(err)
+    res.json(err)
+  })
+}
+
 export {
   index,
   create,
+  show,
 }
