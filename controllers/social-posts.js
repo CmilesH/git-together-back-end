@@ -29,8 +29,18 @@ function show(req, res) {
   })
 }
 
+function update(req, res) {
+  Post.findByIdAndUpdate(req.params.id, req.body, {new: true})
+  .then(post => res.json(post))
+  .catch(err => {
+    console.log(err)
+    res.json(err)
+  })
+}
+
 export {
   index,
   create,
   show,
+  update,
 }

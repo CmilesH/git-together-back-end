@@ -9,7 +9,8 @@ router.get('/', postsCtrl.index)
 router.post('/', postsCtrl.create)
 //localhost:3000/socialFeed/:id
 router.get('/:id', postsCtrl.show)
-
+//localhost:3000/socialFeed/:id
+router.put('/:id', postsCtrl.update)
 
 export {
   router
