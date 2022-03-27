@@ -12,7 +12,7 @@ function index (req, res) {
 }
 
 function create(req, res) {
-  // req.body.author = req.user.profile
+  req.body.author = req.user.profile
   Post.create(req.body)
   .then(post => res.json(post))
   .catch(err => {
