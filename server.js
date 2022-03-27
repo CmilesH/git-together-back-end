@@ -17,7 +17,7 @@ app.use(express.json())
 
 app.use('/api/profiles', profilesRouter)
 app.use('/api/auth', authRouter)
-app.use('/socialFeed', socialPostsRouter)
+app.use('/api/socialFeed', socialPostsRouter)
 
 app.use(function (req, res, next) {
   res.status(404).json({ err: "Not found" })
