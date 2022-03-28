@@ -36,10 +36,20 @@ function update (req, res) {
   })
 }
 
+function deleteProject(req, res) {
+  Project.findByIdAndDelete(req.params.id)
+  .then(project => res,json(project))
+  .catch(err => {
+    console.log(err)
+    res.json(err)
+  })
+}
+
 
 export {
   create,
   index,
   show,
   update,
+  deleteProject as delete,
 }
