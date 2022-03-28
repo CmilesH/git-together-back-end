@@ -7,6 +7,7 @@ const router = Router()
 router.get('/', projectsCtrl.create)
 router.get('/', projectsCtrl.index)
 router.get('/:id', projectsCtrl.show)
+router.put('/:id', projectsCtrl.update)
 
 /*---------- Protected Routes ----------*/
 

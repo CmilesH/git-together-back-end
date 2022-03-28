@@ -27,10 +27,19 @@ function show(req, res) {
   })
 }
 
+function update (req, res) {
+  Project.findByIdAndUpdate(req.params.id, req.body, {new: true})
+  .then(project => res.json(project))
+  .catch(err => {
+    console.log(err)
+    res.json(err)
+  })
+}
 
 
 export {
   create,
   index,
   show,
+  update,
 }
