@@ -16,7 +16,7 @@ router.get('/:id', postsCtrl.show)
 //localhost:3001/socialFeed/:id
 router.put('/:id', postsCtrl.update)
 //localhost:3001/socialFeed/:id
-router.delete('/:id', postsCtrl.delete)
+router.delete('/:id', checkAuth, postsCtrl.delete)
 
 export {
   router
