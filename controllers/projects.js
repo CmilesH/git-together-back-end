@@ -18,9 +18,19 @@ function index(req, res) {
   })
 }
 
+function show(req, res) {
+  Project.findById(req.params.id)
+  .then(project => res.json(project))
+  .catch(err => {
+    console.log(err)
+    res.json(err)
+  })
+}
+
 
 
 export {
   create,
   index,
+  show,
 }
