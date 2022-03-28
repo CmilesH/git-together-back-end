@@ -48,10 +48,25 @@ function deletePost(req, res) {
   })
 }
 
+function createComment (req, res) {
+  req.body.author = req.user.profile
+  Post.findById(req.params.id)
+  .then(post => {
+    post.comments.push(req.body)
+    post.save()
+    res.json(post)
+  })
+  .catch(err => {
+    console.log(err)
+    res.json(err)
+  })
+}
+
 export {
   index,
   create,
   show,
   update,
   deletePost as delete,
+  createComment
 }
