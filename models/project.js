@@ -3,9 +3,7 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const projectSchema = new Schema({
-  repoId: String,
-  repoName: String,
-  repoCommits: [String],
+  repos: [String],
   goals: [String],
   progress: Number,
   owner: {type: Schema.Types.ObjectId, ref: "Profile"}
