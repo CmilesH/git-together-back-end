@@ -62,11 +62,25 @@ function createComment (req, res) {
   })
 }
 
+function deleteComment (req, res) {
+  Post.findById(req.params.id)
+  .then(post => {
+    post.comments.id(req.params.cid).remove()
+    post.save()
+    res.json(post)
+  })
+  .catch(err => {
+    console.log(err)
+    res.json(err)
+  })
+}
+
 export {
   index,
   create,
   show,
   update,
   deletePost as delete,
-  createComment
+  createComment,
+  deleteComment
 }

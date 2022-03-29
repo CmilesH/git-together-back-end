@@ -22,8 +22,11 @@ router.put('/:id', checkAuth, postsCtrl.update)
 //localhost:3001/socialFeed/:id
 router.delete('/:id', checkAuth, postsCtrl.delete)
 
-//localhost:3001/socialFeed/:id
+//localhost:3001/socialFeed/:id/comments
 router.post('/:id/comments', checkAuth, postsCtrl.createComment)
+
+//localhost:3001/socialFeed/:id/comments/:cid
+router.delete('/:id/comments/:cid', checkAuth, postsCtrl.deleteComment)
 
 export {
   router
