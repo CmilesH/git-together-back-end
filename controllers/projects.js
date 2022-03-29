@@ -46,6 +46,18 @@ function deleteProject(req, res) {
   })
 }
 
+function addGoal(req, res) {
+  Project.findById(req.params.id)
+  .then(project => {
+    project.goals.push(req.body)
+    project.save()
+    res.json(post)
+  })
+  .catch(err => {
+    console.log(err)
+    res.json(err)
+  })
+}
 
 export {
   create,
@@ -53,4 +65,5 @@ export {
   show,
   update,
   deleteProject as delete,
+  addGoal,
 }
