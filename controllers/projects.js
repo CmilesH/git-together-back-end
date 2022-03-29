@@ -50,6 +50,11 @@ function addGoal(req, res) {
   .then(project => {
     project.goals.push(req.body)
     project.save()
+    res.json(post)
+  })
+  .catch(err => {
+    console.log(err)
+    res.json(err)
   })
 }
 
