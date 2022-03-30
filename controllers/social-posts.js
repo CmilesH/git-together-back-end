@@ -14,7 +14,12 @@ function index (req, res) {
 function create(req, res) {
   req.body.author = req.user.profile
   Post.create(req.body)
-  .then(post => res.json(post))
+  .then(post => {
+    post.populate('author')
+    .then(populatedPost => {
+      res.json(populatedPost)
+    })
+  })
   .catch(err => {
     console.log(err)
     res.json(err)
