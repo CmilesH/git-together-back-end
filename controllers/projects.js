@@ -47,17 +47,36 @@ function deleteProject(req, res) {
 }
 
 function addGoal(req, res) {
+  console.log(req.body)
   Project.findById(req.params.id)
   .then(project => {
     project.goals.push(req.body)
     project.save()
-    res.json(post)
+    .then(p => {
+      console.log(p)
+      return res.json(p)
+    })
   })
   .catch(err => {
     console.log(err)
     res.json(err)
   })
 }
+
+function deleteGoal(req, res) {
+  Project.findById(req.params.id)
+  .then(project => {
+    const newGoals = project.goals.filter(goal => goal._id !== req.params.goalid)
+    project.goals = newGoals
+    project.save()
+    .then(p => {
+      return res.json(p)
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.json(err)
+})}
 
 export {
   create,
@@ -66,4 +85,5 @@ export {
   update,
   deleteProject as delete,
   addGoal,
+  deleteGoal,
 }

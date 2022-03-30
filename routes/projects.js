@@ -13,6 +13,7 @@ router.get('/:id', projectsCtrl.show)
 router.put('/:id', projectsCtrl.update)
 router.delete('/:id', projectsCtrl.delete)
 router.post('/:id', projectsCtrl.addGoal)
+router.delete(':id/goals/:goalsid', projectsCtrl.deleteGoal)
 
 /*---------- Protected Routes ----------*/
 
