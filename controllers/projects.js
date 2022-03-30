@@ -1,7 +1,7 @@
 import { Project } from '../models/project.js'
 
 function create(req, res) {
-  req.body.owner = req.user.profile
+  // req.body.owner = req.user.profile
   Project.create(req.body)
   .then(project => res.json(project))
   .catch(err => {
