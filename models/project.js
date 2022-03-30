@@ -9,8 +9,9 @@ const goalSchema = new Schema({
 })
 
 const projectSchema = new Schema({
-  repo: [String],
+  repo: String,
   goals: [goalSchema],
+  image: String,
   completionDate: Date,
   owner: {type: Schema.Types.ObjectId, ref: "Profile"}
 }, {
