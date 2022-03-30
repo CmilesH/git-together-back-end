@@ -1,7 +1,10 @@
 import { Router } from 'express'
 import * as projectsCtrl from '../controllers/projects.js'
+import { decodeUserFromToken } from '../middleware/auth.js'
 
 const router = Router()
+
+router.use(decodeUserFromToken)
 
 /*---------- Public Routes ----------*/
 router.post('/', projectsCtrl.create)

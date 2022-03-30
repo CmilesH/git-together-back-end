@@ -1,7 +1,7 @@
 import { Project } from '../models/project.js'
 
 function create(req, res) {
-  // req.body.owner = req.user.profile
+  req.body.owner = req.user.profile
   Project.create(req.body)
   .then(project => res.json(project))
   .catch(err => {
@@ -39,7 +39,7 @@ function update (req, res) {
 
 function deleteProject(req, res) {
   Project.findByIdAndDelete(req.params.id)
-  .then(project => res,json(project))
+  .then(project => res.json(project))
   .catch(err => {
     console.log(err)
     res.json(err)
