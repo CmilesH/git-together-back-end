@@ -21,6 +21,10 @@ router.put('/:id', projectsCtrl.update)
 
 //localhost:3001/projects/:id
 router.delete('/:id', projectsCtrl.delete)
+router.post('/:id/goals', projectsCtrl.addGoal)
+router.patch('/:id/goals/:gid', projectsCtrl.updateGoal)
+router.delete('/:id/goals/:gid', projectsCtrl.deleteGoal)
+
 
 //localhost:3001/projects/:id/goals
 router.post('/:id/goals', projectsCtrl.addGoal)
