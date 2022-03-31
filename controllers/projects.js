@@ -63,20 +63,33 @@ function addGoal(req, res) {
   })
 }
 
-function deleteGoal(req, res) {
+// function deleteGoal(req, res) {
+//   Project.findById(req.params.id)
+//   .then(project => {
+//     const newGoals = project.goals.filter(goal => goal._id !== req.params.goalid)
+//     project.goals = newGoals
+//     project.save()
+//     .then(p => {
+//       return res.json(p)
+//     })
+//   })
+//   .catch(err => {
+//     console.log(err)
+//     res.json(err)
+// })}
+
+function deleteGoal (req, res) {
   Project.findById(req.params.id)
   .then(project => {
-    const newGoals = project.goals.filter(goal => goal._id !== req.params.goalid)
-    project.goals = newGoals
+    project.goals.id(req.params.gid).remove()
     project.save()
-    .then(p => {
-      return res.json(p)
-    })
+    res.json(project)
   })
   .catch(err => {
     console.log(err)
     res.json(err)
-})}
+  })
+}
 
 export {
   create,
