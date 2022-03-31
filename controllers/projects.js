@@ -61,7 +61,23 @@ function addGoal(req, res) {
   })
 }
 
+function updateGoal(req, res) {
+  console.log(req.params.gid)
+  Project.findById(req.params.id)
+  .then(project => {
+    project.goals.id(req.params.gid).complete = !project.goals.id(req.params.gid).complete
+    project.save()
+    .then(savedProject =>
+        res.json(savedProject)
+      )
+  })
+  .catch(err => {
+    console.log(err)
+  })
+}
+
 function deleteGoal (req, res) {
+  console.log(req.params.gid)
   Project.findById(req.params.id)
   .then(project => {
     project.goals.id(req.params.gid).remove()
@@ -82,4 +98,5 @@ export {
   deleteProject as delete,
   addGoal,
   deleteGoal,
+  updateGoal
 }
