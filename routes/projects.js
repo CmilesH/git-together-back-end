@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import * as projectsCtrl from '../controllers/projects.js'
-import { decodeUserFromToken } from '../middleware/auth.js'
+import { decodeUserFromToken, checkAuth } from '../middleware/auth.js'
 
 const router = Router()
 
@@ -28,4 +28,6 @@ router.post('/:id/goals', checkAuth, projectsCtrl.addGoal)
 //localhost:3001/projects/:id/goals/:gid
 router.delete('/:id/goals/:gid', checkAuth, projectsCtrl.deleteGoal)
 
-export { router }
+export { 
+  router
+}
