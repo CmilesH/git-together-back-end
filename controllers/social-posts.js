@@ -78,7 +78,11 @@ function deleteComment (req, res) {
   .then(post => {
     post.comments.id(req.params.cid).remove()
     post.save()
-    res.json(post)
+    .then(savedPost =>
+      savedPost.populate(['author', 'comments.author'])
+      .then(populatedPost => 
+        res.json(populatedPost))
+      )
   })
   .catch(err => {
     console.log(err)
