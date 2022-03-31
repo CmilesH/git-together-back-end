@@ -9,6 +9,7 @@ const goalSchema = new Schema({
 })
 
 const projectSchema = new Schema({
+  name: String,
   repo: String,
   goals: [goalSchema],
   image: String,
