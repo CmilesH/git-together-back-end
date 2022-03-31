@@ -2,6 +2,7 @@ import { Post } from '../models/social-post.js'
 
 function index (req, res) {
   Post.find({})
+  .populate(['author', 'comments.author'])
 	.then(posts => {
     res.json(posts)
   })
@@ -14,7 +15,13 @@ function index (req, res) {
 function create(req, res) {
   req.body.author = req.user.profile
   Post.create(req.body)
-  .then(post => res.json(post))
+  .then(post => {
+    post.populate('author')
+    .then(populatedPost => {
+      res.json(populatedPost)
+      console.log(populatedPost)
+    })
+  })
   .catch(err => {
     console.log(err)
     res.json(err)
@@ -54,7 +61,11 @@ function createComment (req, res) {
   .then(post => {
     post.comments.push(req.body)
     post.save()
-    res.json(post)
+    .then(savedPost =>
+      savedPost.populate(['author', 'comments.author'])
+      .then(populatedPost =>
+        res.json(populatedPost))
+      )
   })
   .catch(err => {
     console.log(err)
