@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import * as projectsCtrl from '../controllers/projects.js'
-import { decodeUserFromToken, checkAuth } from '../middleware/auth.js'
+import { decodeUserFromToken } from '../middleware/auth.js'
 
 const router = Router()
 
@@ -8,25 +8,25 @@ const router = Router()
 router.use(decodeUserFromToken)
 
 //localhost:3001/projects
-router.get('/', checkAuth, projectsCtrl.index)
+router.get('/', projectsCtrl.index)
 
 //localhost:3001/projects
-router.post('/', checkAuth, projectsCtrl.create)
+router.post('/', projectsCtrl.create)
 
 //localhost:3001/projects/:id
-router.get('/:id', checkAuth, projectsCtrl.show)
+router.get('/:id', projectsCtrl.show)
 
 //localhost:3001/projects/:id
-router.put('/:id', checkAuth, projectsCtrl.update)
+router.put('/:id', projectsCtrl.update)
 
 //localhost:3001/projects/:id
-router.delete('/:id', checkAuth, projectsCtrl.delete)
+router.delete('/:id', projectsCtrl.delete)
 
 //localhost:3001/projects/:id/goals
-router.post('/:id/goals', checkAuth, projectsCtrl.addGoal)
+router.post('/:id/goals', projectsCtrl.addGoal)
 
 //localhost:3001/projects/:id/goals/:gid
-router.delete('/:id/goals/:gid', checkAuth, projectsCtrl.deleteGoal)
+router.delete('/:id/goals/:gid', projectsCtrl.deleteGoal)
 
 export { 
   router
