@@ -4,7 +4,7 @@ import { decodeUserFromToken, checkAuth } from '../middleware/auth.js'
 
 const router = Router()
 
-// ========= Protected Routes ========= 
+// ========= Protected Routes ========= // 
 router.use(decodeUserFromToken)
 
 //localhost:3001/socialFeed
@@ -12,9 +12,6 @@ router.get('/', checkAuth, postsCtrl.index)
 
 //localhost:3001/socialFeed
 router.post('/', checkAuth, postsCtrl.create)
-
-//localhost:3001/socialFeed/:id
-router.get('/:id', postsCtrl.show)
 
 //localhost:3001/socialFeed/:id
 router.put('/:id', checkAuth, postsCtrl.update)

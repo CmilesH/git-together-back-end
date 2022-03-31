@@ -28,15 +28,6 @@ function create(req, res) {
   })
 }
 
-function show(req, res) {
-  Post.findById(req.params.id)
-  .then(post => res.json(post))
-  .catch(err => {
-    console.log(err)
-    res.json(err)
-  })
-}
-
 function update(req, res) {
   Post.findByIdAndUpdate(req.params.id, req.body, {new: true})
   .then(post => res.json(post))
@@ -93,7 +84,6 @@ function deleteComment (req, res) {
 export {
   index,
   create,
-  show,
   update,
   deletePost as delete,
   createComment,

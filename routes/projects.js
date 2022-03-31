@@ -4,19 +4,34 @@ import { decodeUserFromToken } from '../middleware/auth.js'
 
 const router = Router()
 
+// ========= Protected Routes ========= // 
 router.use(decodeUserFromToken)
 
-/*---------- Public Routes ----------*/
-router.post('/', projectsCtrl.create)
+//localhost:3001/projects
 router.get('/', projectsCtrl.index)
+
+//localhost:3001/projects
+router.post('/', projectsCtrl.create)
+
+//localhost:3001/projects/:id
 router.get('/:id', projectsCtrl.show)
+
+//localhost:3001/projects/:id
 router.put('/:id', projectsCtrl.update)
+
+//localhost:3001/projects/:id
 router.delete('/:id', projectsCtrl.delete)
 router.post('/:id/goals', projectsCtrl.addGoal)
 router.patch('/:id/goals/:gid', projectsCtrl.updateGoal)
 router.delete('/:id/goals/:gid', projectsCtrl.deleteGoal)
 
-/*---------- Protected Routes ----------*/
 
+//localhost:3001/projects/:id/goals
+router.post('/:id/goals', projectsCtrl.addGoal)
 
-export { router }
+//localhost:3001/projects/:id/goals/:gid
+router.delete('/:id/goals/:gid', projectsCtrl.deleteGoal)
+
+export { 
+  router
+}
